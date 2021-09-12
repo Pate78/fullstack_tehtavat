@@ -3,6 +3,9 @@ import AddForm from './Components/AddForm'
 import Contacts from './Components/Contacts'
 import Filter from './Components/Filter'
 import contactService from './Services/contacts'
+import Notification from './Components/Notification'
+import './index.css'
+
 
 const App = () => {
   // const [persons, setPersons] = useState([
@@ -11,7 +14,8 @@ const App = () => {
   //   { name: 'Dan Abramov', number: '12-43-234345' },
   //   { name: 'Mary Poppendieck', number: '39-23-6423122' }
   // ])
-  const  [persons, setPersons] = useState([])
+  const [ persons, setPersons ] = useState([])
+  const [ notificationMessage, setNotificationMessage ] = useState(null)
   useEffect(() => {
     contactService
       .getAll()
@@ -44,6 +48,10 @@ const App = () => {
         .create(newPerson)
         .then(res => {
           setPersons(persons.concat(res.data))
+          setNotificationMessage(`Added:  ${newPerson.name}, ${newPerson.number}`)
+          setTimeout(() => {
+            setNotificationMessage(null)
+          }, 5000)
         })
       setNewName('')
       setNewNumber('')
@@ -73,6 +81,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notificationMessage} />
       <Filter handleFilterChange={handleFilterChange} filter={filter}/>
       <AddForm
         addContact={addContact}
