@@ -4,9 +4,17 @@ const Contacts = (props) => {
     return (
         <div>
         <h2>Numbers</h2>
-        {props.persons
-            .filter(p => p.name.toLowerCase().includes(props.filter.toLowerCase()))
-            .map(p => <p key={p.name}>{p.name} {p.number}</p>)}
+        {props.persons !== undefined ? props.persons
+            .filter(p => {
+                // console.log(props);
+                // console.log('p.name: ',p.name);
+                return (
+                    p.name
+                        .toLowerCase()
+                        .includes(props.filter
+                            .toLowerCase()))
+            })
+            .map(p => <p key={p.name}>{p.name} {p.number} <button onClick={() => props.handleDelete(p.id)}>delete</button></p>):<></>}
         </div>
     )
 }
