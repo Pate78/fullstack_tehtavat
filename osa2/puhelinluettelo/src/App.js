@@ -63,9 +63,11 @@ const App = () => {
 
   const handleDelete = (id) => {
     console.log(id);
-    contactService
+    if(window.confirm('Sure?')) {
+      contactService
       .remove(id)
       .then(res => setPersons(persons.filter(p => p.id !== id)))
+    }
   }
 
   return (
