@@ -1,0 +1,9 @@
+POST http://localhost:3004/api/blogs
+Content-Type: application/json
+
+{ 
+    "author":"Kirjottaja",
+    "title":"Hyvä blogi",
+    "url":"http://hyvablogi.fi",
+    "likes":2
+}
