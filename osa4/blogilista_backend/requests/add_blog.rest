@@ -1,9 +1,17 @@
 POST http://localhost:3004/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBhdGUiLCJpZCI6IjYxNTA0MDFkZDQ2MzBmZTNiNzMyYjk5YiIsImlhdCI6MTYzMjY1NjU3NH0.tPui0abm4P8eExazXl62RK1OhLLrQA-MfxGKbljuIjg
+
+# { 
+#     "author":"Kirjottaja",
+#     "title":"Hyvä blogi",
+#     "url":"http://hyvablogi.fi",
+#     "likes":2
+# }
 
 { 
-    "author":"Kirjottaja",
-    "title":"Hyvä blogi",
+    "author":"Pate",
+    "title":"Toosi toosi Hyvä blogi",
     "url":"http://hyvablogi.fi",
-    "likes":2
+    "userId":"6150401dd4630fe3b732b99b"
 }
