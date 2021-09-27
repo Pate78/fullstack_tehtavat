@@ -1,6 +1,6 @@
 POST http://localhost:3004/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBhdGUiLCJpZCI6IjYxNTA0MDFkZDQ2MzBmZTNiNzMyYjk5YiIsImlhdCI6MTYzMjY1NjU3NH0.tPui0abm4P8eExazXl62RK1OhLLrQA-MfxGKbljuIjg
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhdGUiLCJpZCI6IjYxNTA3MjI3Zjc0N2ZlMTNiNDc2NGU2YSIsImlhdCI6MTYzMjY2Mzc3NCwiZXhwIjoxNjMyNjY3Mzc0fQ.8JTmmu2jngdcBMrtGLhy4Z1UFd4kcwzIGgLcH7ZLtb0
 
 # { 
 #     "author":"Kirjottaja",
@@ -10,8 +10,8 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBhd
 # }
 
 { 
-    "author":"Pate",
-    "title":"Toosi toosi Hyvä blogi",
+    "author":"pate",
+    "title":"Toosi toosi toosi Hyvä blogi",
     "url":"http://hyvablogi.fi",
-    "userId":"6150401dd4630fe3b732b99b"
+    "userId":"61507227f747fe13b4764e6a"
 }
