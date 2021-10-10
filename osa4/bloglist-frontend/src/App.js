@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import Login from './components/Login'
-import NewBlog from './components/NewBlog'
 import blogService from './services/blogs'
 import loginService from './services/login'
 
@@ -11,17 +10,12 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    const loggedUser = window.localStorage.getItem('appUser')
-    if (loggedUser !== null) {
-      const lUser = JSON.parse(loggedUser)
-      console.log('lUser: ',lUser)
-      setUser(lUser)
+    if(user) {
       blogService.getAll().then(blogs =>
         setBlogs( blogs )
       )
-      blogService.setToken(lUser.token)
     }
-  }, [])
+  }, [user])
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -33,7 +27,8 @@ const App = () => {
           setUsername={setUsername}
           password={password}
           setPassword={setPassword}
-        />
+          user={user}
+          handleLogout={handleLogout}/>
       )
   }
 
@@ -56,12 +51,8 @@ const App = () => {
     try {
         const loggedUser = await loginService.login(tmpUser)
         console.log('Login ok!!')
-        blogService.setToken(loggedUser.token)
         setUser(loggedUser)
         console.log('Logged user: ',loggedUser);
-        blogService.getAll().then(blogs =>
-          setBlogs( blogs )
-        )
         setUsername('')
         setPassword('')
         
@@ -71,24 +62,14 @@ const App = () => {
     }
 
 }
-
-const handleAddBlog = async (blog) => {
-  console.log('Adding new blog!')
-  const response = await blogService.add(blog)
-  console.log('blog: ',blog)
-  console.log('response: ',response)
-  // setBlogs(...blogs, response)
-}
-
-const blogList = () => {
-    return (
-      <div>
-        <NewBlog addNewBlog={handleAddBlog} />
-        {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} />)}
-      </div>
-    )
-}
+  const blogList = () => {
+      return (
+        <div>
+          {blogs.map(blog =>
+            <Blog key={blog.id} blog={blog} />)}
+        </div>
+      )
+  }
 
   return (
     <div>

@@ -1,12 +1,9 @@
-import React, { useState } from "react"
+import React from "react"
 
-const Login = ({ handleLogin, username, setUsername, password, setPassword, user, handleLogout }) => {
+const Login = ({ handleLogin, username, setUsername, password, setPassword }) => {
 
     const handleLoginNameChange = event => setUsername(event.target.value)
     const handlePasswordChange = event => setPassword(event.target.value)
-
-    
-
 
     return (
         <div>
