@@ -16,21 +16,23 @@ const NewBlog = ({ addNewBlog }) => {
     const newBlog = {
       title: title,
       author: author,
-      url: url
+      url: url,
+      likes: 0
     }
+    console.log(newBlog)
     addNewBlog(newBlog)
   }
 
   // LOKITUS:
-  console.log('title: ', title)
-  console.log('author: ', author)
-  console.log('url: ',url)
+  // console.log('title: ', title)
+  // console.log('author: ', author)
+  // console.log('url: ',url)
 
   return(
     <form onSubmit={handleAddBlog}>
-            Otsikko: <input type='text' value={title} onChange={handleTitleChange} /><br />
-            Kirjoittaja: <input type='text' value={author} onChange={handleAuthorChange} /><br />
-            Osoite: <input type='text' value={url} onChange={handleUrlChange} /><br />
+            Otsikko: <input type='text' value={title} onChange={handleTitleChange} className='title'/><br />
+            Kirjoittaja: <input type='text' value={author} onChange={handleAuthorChange} className='author'/><br />
+            Osoite: <input type='text' value={url} onChange={handleUrlChange} className='url'/><br />
       <button type='submit'>Lisää blogi!</button>
     </form>
   )
