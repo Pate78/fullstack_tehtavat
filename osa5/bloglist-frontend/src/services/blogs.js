@@ -14,6 +14,7 @@ const getAll = () => {
 
 const add = async (blog) => {
   const config = {
+    // eslint-disable-next-line no-irregular-whitespace
     headers: { Authorization: token }
   }
   const response = await axios.post(baseUrl, blog, config)

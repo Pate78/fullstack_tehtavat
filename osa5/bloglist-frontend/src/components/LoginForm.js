@@ -1,25 +1,34 @@
-import React from "react"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const LoginForm = ({
-    handleSubmit, 
-    handleLoginNameChange, 
-    handlePasswordChange,
-    username,
-    password }) => {
+  handleSubmit,
+  handleLoginNameChange,
+  handlePasswordChange,
+  username,
+  password }) => {
 
-   
-    return (
-        <div>
+
+  return (
+    <div>
             Lokitus:<br />
             username: {username} <br />
             password: {password} <br />
-            <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
                 Käyttäjätunnus: <input type='text' value={username} onChange={handleLoginNameChange}></input><br />
                 Salasana: <input type='password' value={password} onChange={handlePasswordChange}></input><br />
-                <button type='submit'>Kirjaudu</button>
-            </form>
-        </div>
-    )
+        <button type='submit'>Kirjaudu</button>
+      </form>
+    </div>
+  )
+}
+
+LoginForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  handleLoginNameChange: PropTypes.func.isRequired,
+  handlePasswordChange: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired
 }
 
 export default LoginForm
