@@ -69,7 +69,7 @@ describe('Blog app', function() {
     // })
     it('like button works', function() {
       cy.contains('Näytä kaikki tiedot').click()
-      cy.contains('likeButton').click()
+      cy.contains('.likeButton').click()
       cy.contains('likes: 3')
     })
 
