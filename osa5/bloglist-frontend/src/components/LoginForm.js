@@ -15,9 +15,9 @@ const LoginForm = ({
             username: {username} <br />
             password: {password} <br />
       <form onSubmit={handleSubmit}>
-                Käyttäjätunnus: <input type='text' value={username} onChange={handleLoginNameChange}></input><br />
-                Salasana: <input type='password' value={password} onChange={handlePasswordChange}></input><br />
-        <button type='submit'>Kirjaudu</button>
+                Käyttäjätunnus: <input type='text' id='username' value={username} onChange={handleLoginNameChange}></input><br />
+                Salasana: <input type='password' id='password' value={password} onChange={handlePasswordChange}></input><br />
+        <button id='login-button' type='submit'>Kirjaudu</button>
       </form>
     </div>
   )

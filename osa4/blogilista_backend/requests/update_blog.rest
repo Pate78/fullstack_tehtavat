@@ -1,0 +1,18 @@
+PUT http://localhost:3004/api/blogs/61741192313e576e681edf37
+Content-Type: application/json
+# Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ…jAxfQ.Ri4ws1D6fMd716R8WxOOSOzxkAcqCEq3L6BU-jnWpnI
+
+# { 
+#     "author":"Kirjottaja",
+#     "title":"Hyvä blogi",
+#     "url":"http://hyvablogi.fi",
+#     "likes":2
+# }
+
+{ 
+    "author":"pate",
+    "title":"jep",
+    "url":"http://hyvablogi.fi",
+    "userId":"61507227f747fe13b4764e6a",
+    "likes": 3
+}

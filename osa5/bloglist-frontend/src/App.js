@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import LoginForm from './components/LoginForm'
 import NewBlog from './components/NewBlog'
+import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 import blogService from './services/blogs'
 import loginService from './services/login'
@@ -12,6 +13,7 @@ const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
   const [loginVisible, setLoginVisible] = useState(false)
+  const [notificationMessage, setNotificationMessage] = useState(null)
 
   useEffect(() => {
     const loggedUser = window.localStorage.getItem('appUser')
@@ -86,6 +88,10 @@ const App = () => {
       window.localStorage.setItem('appUser',JSON.stringify(loggedUser))
     } catch(exception) {
       console.log('Wrong credentials')
+      setNotificationMessage('wrong creadentials')
+      setTimeout(() => {
+        setNotificationMessage(null)
+      }, 5000)
     }
 
   }
@@ -100,6 +106,27 @@ const App = () => {
   // setBlogs(...blogs, response)
   }
 
+  const addLike = async (id) => {
+    // console.log('addLike button pressed: ', id)
+    const blog = blogs.find(b => b.id === id)
+    // console.log('blog: ',blog, 'id: ', id)
+    const changedBlog = { ...blog, likes: blog.likes+1 }
+    await blogService.update(changedBlog)
+    setBlogs(blogs.map(b => {
+      // console.log('b: ', b, 'response: ', response, 'blog.id !== id: ',b.id !== id)
+      return(b.id !== id ? b : changedBlog)
+    }))
+    console.log('updated blogs: ', blogs)
+  }
+
+  const removeBlog = async (id) => {
+    await blogService.remove(id)
+    setBlogs(blogs.filter(b => {
+      // console.log('b: ', b, 'response: ', response, 'blog.id !== id: ',b.id !== id)
+      b.id === id
+    }))
+  }
+
   const blogList = () => {
     return (
       <div>
@@ -107,19 +134,21 @@ const App = () => {
           <NewBlog addNewBlog={handleAddBlog} />
         </Togglable>
         {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} />)}
+          <Blog key={blog.id} blog={blog} addLike={addLike} removeBlog={removeBlog}/>)}
       </div>
     )
   }
 
   return (
     <div>
+      <Notification message={notificationMessage} />
       <h2>blogs</h2>
       {user !==null ? `Logged in as ${user.username}`:null}
 
       {user=== null ? login():blogList()}
 
       {user !== null ? <button onClick={handleLogout}>Logout</button>:<></>}
+
     </div>
   )
 }

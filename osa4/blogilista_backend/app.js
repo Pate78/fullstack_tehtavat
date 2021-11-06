@@ -18,10 +18,20 @@ app.use(express.json())
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+
+
+if(process.env.NODE_ENV === 'test') {
+  const testingRouter = require('./controllers/test')
+  app.use('/api/testing', testingRouter)
+  console.log('Test environment. Test settings in use!!');
+}
+
 app.use(middleware.requestLogger)
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
+console.log('App started!');
+console.log('MongoDB URI: ',config.MONGODB_URI)
 // const blogSchema = mongoose.Schema({
 //   title: String,
 //   author: String,
@@ -35,8 +45,7 @@ app.use(middleware.errorHandler)
 // mongoose.connect(mongoUrl)
 
 // Mongo:
-logger.info('connecting to', config.MONGODB_URI)
-
+logger.info('connecting to: ', config.MONGODB_URI)
 mongoose.connect(config.MONGODB_URI)
   .then(() => {
     logger.info('connected to MongoDB')
@@ -44,10 +53,6 @@ mongoose.connect(config.MONGODB_URI)
   .catch((error) => {
     logger.error('error connection to MongoDB:', error.message)
   })
-
-
-
-
 
 // app.get('/api/blogs', (request, response) => {
 //   Blog

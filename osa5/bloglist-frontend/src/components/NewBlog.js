@@ -30,9 +30,9 @@ const NewBlog = ({ addNewBlog }) => {
 
   return(
     <form onSubmit={handleAddBlog}>
-            Otsikko: <input type='text' value={title} onChange={handleTitleChange} className='title'/><br />
-            Kirjoittaja: <input type='text' value={author} onChange={handleAuthorChange} className='author'/><br />
-            Osoite: <input type='text' value={url} onChange={handleUrlChange} className='url'/><br />
+            Otsikko: <input type='text' value={title} onChange={handleTitleChange} id='title'/><br />
+            Kirjoittaja: <input type='text' value={author} onChange={handleAuthorChange} id='author'/><br />
+            Osoite: <input type='text' value={url} onChange={handleUrlChange} id='url'/><br />
       <button type='submit'>Lisää blogi!</button>
     </form>
   )
