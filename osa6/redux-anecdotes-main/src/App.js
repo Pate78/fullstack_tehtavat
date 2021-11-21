@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import AnecdoteForm from './components/AnecdoteForm'
 import AnecdoteList from './components/AnecdoteList'
+import Notification from './components/Notification'
 // import { vote } from './reducers/anecdoteReducer'
 // import anecdoteReducer from './reducers/anecdoteReducer'
 
@@ -15,6 +16,7 @@ const App = () => {
   return (
     <div>
       <h2>Anecdotes</h2>
+      <Notification />
       <AnecdoteForm />
       <AnecdoteList />
       {/* {anecdotes.map(anecdote =>
